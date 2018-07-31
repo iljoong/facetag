@@ -66,8 +66,14 @@ Run app (facetag and mongodb)
 ```
 docker-compose -f docker-app.yaml up -d
 ```
-__note__ : modify IMAGE and HOSTIP variables in `.env` before run `docker-compose`.
+__note 1__ : modify IMAGE and HOSTIP variables in `.env` before run `docker-compose`.
 
+__note 2__ : inital start is __very slow__ due to GPU or DL framework initialization.
+
+To view logs from docker for debugging, use following cli
+```
+docker logs -f facetag_facetag_1
+```
 ### runing on docker on GPU VM
 
 To run `docker-compose` on GPU VM, you must explicitly set default runtime to _nvidia_.
@@ -86,9 +92,9 @@ sudo service start docker
 You can also run using `nvidia-docker`/`docker` cli.
 
 ```
-nvidia-docker run -v ~/webroot:/webroot -v ~/models:/models -e MONGOIP=10.1.1.4 -p 8080:8080 -d <id>/facetag:gpu
+nvidia-docker run -v ~/webroot:/webroot -v ~/models:/models -e MODELPATH="../models/celebrity_model.h5" -e MODELTAGS='ben_afflek;elton_john;jerry_seinfeld;madonna;mindy_kaling' -e MONGOURI='mongodb://10.1.1.4:27017' -p 8080:8080 -d <id>/facetag:gpu
 or
-docker run --runtime nvidia -v ~/webroot:/webroot -v ~/models:/models -e MONGOIP=10.1.1.4 -p 8080:8080 -d <id>/facetag:gpu
+docker run --runtime nvidia -v ~/webroot:/webroot -v ~/models:/models -e MODELPATH="../models/celebrity_model.h5" -e MODELTAGS='ben_afflek;elton_john;jerry_seinfeld;madonna;mindy_kaling' -e MONGOURI='mongodb://10.1.1.4:27017' -p 8080:8080 -d <id>/facetag:gpu
 ```
 
 Please read following for more information

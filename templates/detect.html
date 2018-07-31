@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h3>Face Detection</h3>
+    <form id="facedetect" action="" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" id="file" required />
+        <input type="submit" value="Upload" class="submit" />
+    <br>
+    <div id="btns" style="display: none;">
+        <input type="button" id="r0btn" value="rotate 0">
+        <input type="button" id="r90btn" value="rotate 90">
+        <input type="button" id="rn90btn" value="rotate -90">
+        <input type="button" id="r180btn" value="rotate 180">
+    </div>
+    <br>
+    <div id="message"></div>
+    <img id="faceimg" style="display: none;"><img>
+    <canvas id="facecanvas" width="1000" height="1000"></canvas>
+    <hr />
+{% endblock %}

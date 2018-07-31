@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="modal fade" id="myModal" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog">
+        
+        <!-- Modal content-->
+        <div class="modal-content">
+            <form name="edit" action="/edit/{{fid}}" method="post">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Edit tag</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="text" class="form-control" placeholder="pos" name="editpos" id="editpos">
+                    <input type="text" class="form-control" placeholder="tag" name="edittag" id="edittag">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" type="submit" id="edit">Okay</button>
+                    <button class="btn btn-default" type="button" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+        
+        </div>
+    </div>
+    <h3>Edit</h3>
+    <div class="text-center">
+        <input id="tagid" type="hidden" value={{fid}}>
+        <input id="newfacepos" type="hidden">
+        <pre id="message">{{ face.detect}}</pre>
+
+        <img class="NO-CACHE" id="faceimg" src="/pix/{{face.filename}}" style="display: none;" onload="editLoaded(this.id, {{face.detect}}, {{face.rotation}})">
+        <canvas id="facecanvas" width="1000" height="1000"></canvas>
+    </div>
+{% endblock %}

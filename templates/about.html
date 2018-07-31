@@ -1,0 +1,36 @@
+
+{% extends "layout.html" %}
+{% block content %}
+    <h3>About FaceTag</h3>
+    <p>FaceTag app is a simple AI-based photo gallery service which is similar to many online services like, 
+    Facebook tag</p>
+    <br>
+    <pre>
+This app demonstrates followings:
+
+- Basic photo gallery features
+    - responsive web design
+    - upload, show with paging, search by tag, edit tag
+    - exif (rotation, timetaken) handling
+    
+- AI/DL model to recognize(classify) faces
+    - keras with tensorflow backend
+    - automatically detect & tag faces using AI/DL
+    - support continuous learning process for improving model
+    - crop face from images, zip and upload to blob
+
+- Multi-model support
+    - run different model without changing code
+    </pre>
+    <h4>Open Source Notice</h4>
+    <p>This app contains software components from follwing open source</p>
+    <ul>
+        <li>
+            Image selection: <a href="http://odyniec.net/projects/imgareaselect/">http://odyniec.net/projects/imgareaselect/</a>
+        </li>
+        <li>
+            bootstrap-menu: <a href="https://dgoguerra.github.io/bootstrap-menu/">https://dgoguerra.github.io/bootstrap-menu/</a>
+        </li>
+    </ul>
+    <hr/>
+{% endblock %}

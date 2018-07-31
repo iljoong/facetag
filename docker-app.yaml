@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+  mongodb:
+    image: mongo
+    volumes:
+      - "~/mongodb/db:/data/db"
+      - "~/mongodb/configdb:/data/configdb"
+    ports:
+      - "27017:27017"
+
+  facetag:
+    image: ${IMAGE}
+    environment:
+      - MODELPATH=../models/celebrity_model.h5
+      - MODELTAGS=ben_afflek;elton_john;jerry_seinfeld;madonna;mindy_kaling
+      - MONGOURI=mongodb://${HOSTIP}:27017
+      - MONGOCOLL=celebrity
+    volumes:
+      -  "~/webroot:/webroot"
+      -  "~/models:/models"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongodb

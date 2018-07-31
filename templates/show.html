@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h3>Show</h3>
+    {% if tag %}
+        show: {{tag}}
+    {% else %}
+        show all
+    {% endif %}
+
+    <div class="text-center">
+        <form action="/show">
+            tag:
+            <input type="text" name="tag">
+            <input type="submit" value="Search">
+        </form>
+        <br>
+
+        <div class="row">
+        {% for column in faces |slice(3) %}
+            <div class="col-sm-4">
+            {% for face in column %}
+                <div>
+                    <a href="/edit/{{face._id}}"><img id="faceimg" src="/smpix/{{face.filename}}" class="img-thumbnail"></a>
+                    <br>
+                    {{face.filename}}:  &nbsp;
+                    {% for d in face.detect %}
+                        <span class="badge badge-info">{{d.tag}}</span>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            </div>
+        {% endfor %}
+        </div>
+        <hr />
+        <p style="display: none;">total = {{ pageinfo.total }}, count = {{pageinfo.pagecount}}, page = {{ pageinfo.page }}</p>
+        <div align="center">
+            <ul class="pagination">
+            {% for n in range(1, pageinfo.pagecount+1) %}
+                {% if n == pageinfo.page %}
+                    <li class="active">
+                        <a href="#">{{n}}</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="/show?tag={{tag}}&page={{n}}">{{n}}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

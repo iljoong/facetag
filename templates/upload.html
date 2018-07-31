@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h3>Upload Photo: {{mode}}</h3>
+    <form id="uploadimage" action="" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" id="file" required />
+        <input type="submit" value="Upload" class="submit" />
+    <br>
+    <input id="tagid" type="hidden">
+    <input id="newfacepos" type="hidden">
+    <div id="message"></div>
+    <div class="text-center">
+        <div id="loading" align="center" style="display: none;"><img src="/wwwroot/preloader.gif" width="100" height="100"></div>
+        <img id="faceimg" style="display: none;"><img>
+        <canvas id="preview" width="1000" height="1000"></canvas>
+    </div>
+    <hr />
+{% endblock %}

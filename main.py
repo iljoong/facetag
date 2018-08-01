@@ -262,6 +262,10 @@ def classify():
    
     facedata = ""
     try:
+        # load model here because of Docker GPU issue: https://github.com/iljoong/facetag/issues/1
+        if (model == None):
+            model = loadModel()
+
         start_time = time.time()
         
         f = request.files['file']
@@ -303,9 +307,6 @@ def classify():
                 tag, conf = classifyFace(model, roi_face)
             elif (usecvapi):
                 tag, conf = classifyFaceCV(model, roi_face)
-            else:
-                conf = 0.0
-                tag = "none"
 
             # be aware that convert numpy.int32 to int for json serialization
             drect = { 'x': int(x), 'y': int(y), 'w': int(w), 'h': int(h) }
@@ -425,7 +426,8 @@ def initialize():
                         datefmt='%Y-%m-%d %H:%M:%S')
 
     logging.debug("usecvapi = %s" % usecvapi)
-    model = loadModel()
+    # Docker GPU issue - removed init here
+    #model = loadModel()
     coll = loadCollection()
 
 if __name__ == '__main__':

@@ -107,6 +107,9 @@ def detectFaceCNN(gray):
 def classifyFace(model, frame):
     global labels
 
+    if (model == None):
+        return ("none", 0.0)
+        
     img = cv2.resize(frame, (img_size, img_size), interpolation = cv2.INTER_AREA)
     x = np.expand_dims(img, axis=0)
     x = x.astype(float)

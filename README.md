@@ -36,7 +36,7 @@ You could also experiment various face detection method, [Haar-cascade detection
 
 ## Installation & Run
 
-### folder structure
+### Folder structure
 
 ```
  - AOA-FACE     <- current folder
@@ -52,7 +52,7 @@ You could also experiment various face detection method, [Haar-cascade detection
     - smpix     <- small-size/preview images
 ```
  
-### running on docker
+### Running on docker
 
 Update blob account name/key and custom vision api info in `appconfig.py`
 
@@ -68,13 +68,13 @@ docker-compose -f docker-app.yaml up -d
 ```
 __note 1__ : modify IMAGE and HOSTIP variables in `.env` before run `docker-compose`.
 
-__note 2__ : inital start is __very slow__ due to GPU or DL framework initialization.
+__note 2__ : warm-up is required since inital request is __very slow__ due to GPU and DL framework initialization.
 
 To view logs from docker for debugging, use following cli
 ```
 docker logs -f facetag_facetag_1
 ```
-### runing on docker on GPU VM
+### Runing on docker on GPU VM
 
 To run `docker-compose` on GPU VM, you must explicitly set default runtime to _nvidia_.
 Add following line in `/etc/docker/daemon.json`.
@@ -100,7 +100,7 @@ docker run --runtime nvidia -v ~/webroot:/webroot -v ~/models:/models -e MODELPA
 Please read following for more information
 [https://marmelab.com/blog/2018/03/21/using-nvidia-gpu-within-docker-container.html](https://marmelab.com/blog/2018/03/21/using-nvidia-gpu-within-docker-container.html)
 
-### running on vm
+### Running on vm
 
 Please refer `Dockerfile-cpu` file for installing packages run app by following commands.
 
